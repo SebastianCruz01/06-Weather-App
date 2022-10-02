@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Now!</title>
+    <h1 class = "heading">Weather Now!</h1>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <body style="background-color: lightgray;">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-4" style="padding-top: 10px; text-align: center;">
+              
+                         <!------------------FORM GROUP------------------->
+                <div class="form-group" for="search">Enter a City:
+                <input type="text" class="form-control" id="search-term">
+                    <!-----------------------BUTTONS!!!!!!!----------------------->
+
+                <button type="submit" class="btn btn-primary" id="run-search">
+                  <i class="fa fa-search"></i> 
+                  Search</button>
+                  <button type="submit" class="btn btn-secondary" id="clear-search">
+                  Clear Searches</button>
+
+                    <!----------------------------------------------------------->
+              </div>
+                         <!---------------------------------------------------->
+      
+              <div class="col buttons-view"></div>
+            </div>
+      
+            <div class="col-md-8">
+              <div class="row" style="padding-top: 10px;">
+                <div class="col-md">
+      
+                  <div style="padding-left:10px;" class="search-data"></div>
+      
+                  <div class="col-md-10 fiveDayHeader"></div>
+                  <div class="col-md-1"></div>
+                  <div class="col-md-1"></div>
+                </div>
+      
+                <div class="row" style="margin: 15px;">
+      
+                  <div class="col-md-auto">
+                    <div><img class="day1-icon"></div>
+                    <div class="day1"></div>
+                  </div>
+      
+                  <div class="col-md-auto">
+                    <div><img class="day2-icon"></div>
+                    <div class="day2"></div>
+                  </div>
+      
+                  <div class="col-md-auto">
+                    <div><img class="day3-icon"></div>
+                    <div class="day3"></div>
+                  </div>
+      
+                  <div class="col-md-auto">
+                    <div><img class="day4-icon"></div>
+                    <div class="day4"></div>
+                  </div>
+      
+                  <div class="col-md-auto">
+                    <div><img class="day5-icon"></div>
+                    <div class="day5"></div>
+                  </div>
+      
+                  <div class="col-md-1"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<script src="script.js"></script>
+        
+</body>
+</html>
