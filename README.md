@@ -1,6 +1,6 @@
 
 ## User Story
-
+IN THIS PROJECT WE WILL BE CREATING A WEATHER BOARD USING A SERVER-SIDE API  
 ```
 AS A traveler
 I WANT to see the weather outlook for multiple cities
