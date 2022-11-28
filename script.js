@@ -4,31 +4,25 @@ const apiKey = "33caee23efdb3ef77d0b82a982b8f5da";  // Openweather API Key //
 var currWeatherDiv = $("#currentWeather")  ;        // Current Weather Info //
 var forecastDiv = $("#weatherForecast");            // Five Day Forcast Info //
 var citiesArray;                                    // City Array //
-
-
-$("#submitCity").click(function() {                  //Jquery City search when user clicks search icon
+$("#submitCity").click(function() {                 //Jquery City search when user clicks search icon
     event.preventDefault();
     let cityName = $("#cityInput").val();
     returnCurrentWeather(cityName);
     returnWeatherForecast(cityName);
 });
-
-
 $("#previousSearch").click(function() {              // Previous Citys show under search 
     let cityName = event.target.value;
     returnCurrentWeather(cityName);
     returnWeatherForecast(cityName);
 })
 
- 
 if (localStorage.getItem("localWeatherSearches")) {         // Local Storage functionality //
     citiesArray = JSON.parse(localStorage.getItem("localWeatherSearches"));
     writeSearchHistory(citiesArray);
 } else {
     citiesArray = [];
 };
-
-// Call API for current weather by city name 
+    // Call API for current weather by city name 
 function returnCurrentWeather(cityName) {
     let queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=imperial&APPID=${apiKey}`;
 
@@ -50,7 +44,7 @@ function returnCurrentWeather(cityName) {
     })
 };
 
-// Call API for weather forcast 
+    // Call API for weather forcast 
 function returnWeatherForecast(cityName) {
     let queryURL = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=imperial&APPID=6c0ac38b22e3e819b50460a5a899f855`;
 
@@ -61,10 +55,9 @@ function returnWeatherForecast(cityName) {
             if (!forecastInfo[i].dt_txt.includes("12:00:00")) {
                 return;
             }
-            // Forcast dates 
-            let forecastDate = new Date(forecastInfo[i].dt*1000);
-            // Displays Weather Icon 
-            let weatherIcon = `https://openweathermap.org/img/wn/${forecastInfo[i].weather[0].icon}.png`;
+           
+            let forecastDate = new Date(forecastInfo[i].dt*1000);   // Forcast dates
+            let weatherIcon = `https://openweathermap.org/img/wn/${forecastInfo[i].weather[0].icon}.png`; // Displays Weather Icon 
             // Append data to 5 day forcast when searched 
             forecastDiv.append(`
             <div class="col-md">
@@ -81,8 +74,7 @@ function returnWeatherForecast(cityName) {
         })
     })
 };
-
-// The current UV index is collected at the same time as the current weather
+    // The current UV index is collected at the same time as the current weather
 function returnUVIndex(coordinates) {
     let queryURL = `https://api.openweathermap.org/data/2.5/uvi?lat=${coordinates.lat}&lon=${coordinates.lon}&APPID=${apiKey}`;
 
@@ -90,9 +82,7 @@ function returnUVIndex(coordinates) {
         let currUVIndex = response.value;
         let uvSeverity = "green";
         let textColour = "white"
-
-      
-        // the UV Index rating 
+        //  the UV Index rating 
         if (currUVIndex >= 11) {
             uvSeverity = "purple";
         } else if (currUVIndex >= 8) {
@@ -107,25 +97,21 @@ function returnUVIndex(coordinates) {
         currWeatherDiv.append(`<p>UV Index: <span class="text-${textColour} uvPadding" style="background-color: ${uvSeverity};">${currUVIndex}</span></p>`);
     })
 }
-
-//history of recent searches 
+    //history of recent searches 
 function createHistoryButton(cityName) {
     var citySearch = cityName.trim();
     var buttonCheck = $(`#previousSearch > BUTTON[value='${citySearch}']`);
     if (buttonCheck.length == 1) {
       return;
     }
-    
     if (!citiesArray.includes(cityName)){
         citiesArray.push(cityName);
         localStorage.setItem("localWeatherSearches", JSON.stringify(citiesArray));
     }
-
     $("#previousSearch").prepend(`
     <button class="btn btn-light cityHistoryBtn" value='${cityName}'>${cityName}</button>
     `);
 }
-
 function writeSearchHistory(array) {
     $.each(array, function(i) {
         createHistoryButton(array[i]);
